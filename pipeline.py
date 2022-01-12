@@ -213,7 +213,9 @@ def create_evaluation_step(params, model_evaluation_processor,
         inputs=inputs_evaluation,
         outputs=outputs_evaluation,
         container_arguments=["--data-dir", data_dir, "--model-dir", model_dir,
-                             "--output-dir", output_dir]
+                             "--output-dir", output_dir, 
+                             "--experiment-name", params['experiment-name'],
+                             "--mlflow-server", params['mlflow-server-uri']]
     )
 
     return evaluation_step
