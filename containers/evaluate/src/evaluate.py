@@ -205,6 +205,10 @@ if __name__ == "__main__":
     report["experiment_id"] = experiment_id
     report["run_id"] = run_id
     
+    client = MlflowClient()
+    client.log_metric(run_id=run_id, key='average_precision',
+                      value=report['average_precision'])
+    
     evaluation_output_path = os.path.join(args.output_dir, "evaluation.json")
     print("Saving classification report to {}".format(evaluation_output_path))
 
