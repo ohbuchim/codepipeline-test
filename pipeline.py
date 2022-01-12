@@ -38,6 +38,8 @@ def get_parameters():
         params['sfn-role-arn'] = config['config']['sfn-role-arn']
         params['job-name-prefix'] = config['config']['job-name-prefix']
         params['secretsmanager-arn'] = config['config']['secretsmanager-arn']
+        params['mlflow-server-uri'] = config['experiments']['mlflow-server-uri']
+        params['experiment-name'] = config['experiments']['experiment-name']
         params['prep-job-name'] = os.environ['PREP_JOB_NAME']
         params['prep-image-uri'] = os.environ['PREPRO_IMAGE_URI']
         params['prep-input-path'] = config['preprocess']['input-data-path']
@@ -133,7 +135,9 @@ def create_estimator(params, sagemaker_role):
             'batch-size': params['hyperparameters']['batch-size'],
             'test-batch-size': 4,
             'lr': 0.01,
-            'epochs': params['hyperparameters']['epoch']
+            'epochs': params['hyperparameters']['epoch'],
+            'experiment-name': params['experiment-name'],
+            'mlflow-server': params['mlflow-server-uri']
         },
         output_path=params['train-output-path'])
 
