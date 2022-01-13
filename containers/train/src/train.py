@@ -214,6 +214,7 @@ if __name__ == "__main__":
 
     experiment_name = args.experiment_name
     mlflow.set_tracking_uri(args.mlflow_server)
+    
     mlflow.set_experiment(experiment_name)
     
     experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
