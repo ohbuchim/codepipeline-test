@@ -33,7 +33,7 @@ def get_parameters():
     with open(config_name) as file:
         config = yaml.safe_load(file)
         params['region'] = config['config']['region']
-        params['sagemaker-role'] = config['config']['sagemaker-role']
+        params['sagemaker-role-arn'] = config['config']['sagemaker-role-arn']
         params['sfn-workflow-name'] = config['config']['sfn-workflow-name']
         params['sfn-role-arn'] = config['config']['sfn-role-arn']
         params['job-name-prefix'] = config['config']['job-name-prefix']
@@ -336,7 +336,7 @@ if __name__ == '__main__':
     job_name_prefix = params['job-name-prefix'] 
     # job_name = job_name_prefix + '-' + timestamp
 
-    sagemaker_role = params['sagemaker-role']
+    sagemaker_role = params['sagemaker-role-arn']
     # prepro_job_name = 'prepro-' + job_name
     # train_job_name = 'train-' + job_name
     # eval_job_name = 'eval-' + job_name
