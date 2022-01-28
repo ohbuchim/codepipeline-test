@@ -35,7 +35,7 @@ TRAIN_IMAGE_URI=$IMAGE_URI:$IMAGE_TAG
 aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin 763104351884.dkr.ecr.$REGION.amazonaws.com
 aws ecr get-login-password | docker login --username AWS --password-stdin $REGISTRY_URL
 aws ecr create-repository --repository-name $ECR_REPOGITORY
-
+cat ~/.docker/config.json
 docker build -t $ECR_REPOGITORY containers/train/
 docker tag ${ECR_REPOGITORY} $IMAGE_URI:${IMAGE_TAG}
 docker push $IMAGE_URI:${IMAGE_TAG}
